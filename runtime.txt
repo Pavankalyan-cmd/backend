@@ -1,0 +1,2 @@
+python-3.12
+gunicorn expensetracker.wsgi:application --bind=0.0.0.0 --timeout 120

@@ -14,19 +14,28 @@ from django.utils.decorators import method_decorator
 import firebase_admin
 from django.http import JsonResponse
 from firebase_admin import auth, credentials, firestore
+import json
 
 
 import os
 
 # Externalize Firebase credentials path
-FIREBASE_CREDENTIAL_PATH = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+firebase_json = os.getenv("FIREBASE_CREDENTIALS_JSON")
 
+if not firebase_json:
+    raise ValueError("Missing FIREBASE_CREDENTIALS_JSON in environment variables")
+
+# Convert JSON string to dictionary
+firebase_cred_dict = json.loads(firebase_json)
+
+# Only initialize once
 if not firebase_admin._apps:
-    cred = credentials.Certificate(FIREBASE_CREDENTIAL_PATH)
+    cred = credentials.Certificate(firebase_cred_dict)  # ✅ This works for firebase_admin >= 4.3.0
+    # Or: cred = credentials.Certificate.from_json(firebase_cred_dict)  # ✅ safest
     firebase_admin.initialize_app(cred)
+
+# Get Firestore client
 db = firestore.client()
-
-
 
 def firebase_authenticated(view_func):
     @wraps(view_func)

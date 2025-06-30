@@ -31,7 +31,9 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'expensewiseai-pro.onrender.com',  # Your backend (Render)
     'expense-wise-ai-ltgug9exr-pavankalyan-vandanapus-projects.vercel.app', 
-    "*"# Your frontend (Vercel)
+    # Your frontend (Vercel)
+
+    "*"
 ]
 
 # Secret Key & Debug

@@ -30,7 +30,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'expensewiseai-pro.onrender.com',  # Your backend (Render)
-    'expense-wise-ai-ltgug9exr-pavankalyan-vandanapus-projects.vercel.app',  # Your frontend (Vercel)
+    'expense-wise-ai-ltgug9exr-pavankalyan-vandanapus-projects.vercel.app', 
+    "*"# Your frontend (Vercel)
 ]
 
 # Secret Key & Debug
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'api',
     'rest_framework',
     'corsheaders',
